@@ -1,0 +1,6 @@
+[
+  {"createdAt":"createdAt 1","name":"name 1","image":"image 1","numOfProducts":84,"id":"1"},
+  {"createdAt":"createdAt 2","name":"name 2","image":"image 2","numOfProducts":53,"id":"2"},
+  {"createdAt":"createdAt 3","name":"name 3","image":"image 3","numOfProducts":63,"id":"3"},
+  {"createdAt":"createdAt 4","name":"name 4","image":"image 4","numOfProducts":88,"id":"4"}
+]

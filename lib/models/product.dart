@@ -29,8 +29,8 @@ class Product {
 Product product = Product(
   id: "1",
   name: "Sony Headphones",
-  image: "assets/images/img_1.png",
   price: 229,
+  image: "assets/images/img_1.png",
   category: "Sony",
   subtitle: "Augmented noise-canceling",
   description:
