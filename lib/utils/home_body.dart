@@ -4,6 +4,7 @@ import 'package:headphones_shop_app/constants.dart';
 import 'package:headphones_shop_app/models/categories.dart';
 
 import 'package:headphones_shop_app/size_config.dart';
+import 'package:headphones_shop_app/utils/category_card.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -20,36 +21,8 @@ class Body extends StatelessWidget {
               title: "Browse by Categories",
             ),
           ),
-          SizedBox(
-            width: defaultSize * 20.5,
-            child: AspectRatio(
-              aspectRatio: 0.83,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                      //color: Colors.blueAccent,
-                      ),
-                  ClipPath(
-                    clipper: CategoryShapeCustom(),
-                    child: AspectRatio(
-                      aspectRatio: 1.025,
-                      child: Container(color: secondaryColorCustom),
-                    ),
-                  ),
-                  Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: AspectRatio(
-                        aspectRatio: 1.15,
-                        child: FadeInImage.assetNetwork(
-                            placeholder: "assets/spinner.gif",
-                            image: category.image ?? ""),
-                      ))
-                ],
-              ),
-            ),
+          CategoryCard(
+            category: category,
           )
         ],
       ),
