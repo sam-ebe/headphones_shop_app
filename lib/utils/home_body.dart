@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:headphones_shop_app/constants.dart';
 import 'package:headphones_shop_app/models/categories.dart';
-
+import 'package:headphones_shop_app/services/fetch_categories.dart';
 import 'package:headphones_shop_app/size_config.dart';
-import 'package:headphones_shop_app/utils/category_card.dart';
+import 'package:headphones_shop_app/utils/categories_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -14,6 +13,8 @@ class Body extends StatelessWidget {
     double defaultSize = SizeConfig.defaultSize;
     return SingleChildScrollView(
       child: Column(
+        //align title to the left
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.all(defaultSize * 2), //20
@@ -21,9 +22,16 @@ class Body extends StatelessWidget {
               title: "Browse by Categories",
             ),
           ),
-          CategoryCard(
-            category: category,
-          )
+          FutureBuilder(
+              future: fetchCategories(),
+              builder: ((context, snapshot) => snapshot.hasData
+                  ? Categories(
+                      //convert object to List<Category> to resolve type error
+                      categories: snapshot.data as List<Category>,
+                    )
+                  : Center(
+                      child: Image.asset("assets/ripple.gif"),
+                    )))
         ],
       ),
     );
