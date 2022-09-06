@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:headphones_shop_app/constants.dart';
 import 'package:headphones_shop_app/models/categories.dart';
+import 'package:headphones_shop_app/models/product.dart';
 import 'package:headphones_shop_app/services/fetch_categories.dart';
 import 'package:headphones_shop_app/size_config.dart';
 import 'package:headphones_shop_app/utils/categories_list.dart';
+import 'package:headphones_shop_app/utils/product_card.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -11,18 +12,16 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
-    return SingleChildScrollView(
-      child: Column(
-        //align title to the left
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(defaultSize * 2), //20
-            child: TitleText(
-              title: "Browse by Categories",
-            ),
-          ),
-          FutureBuilder(
+    return Column(
+      //align title to the left
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(defaultSize * 2), //20
+          child: TitleText(title: "Browse by Categories"),
+        ),
+        SingleChildScrollView(
+          child: FutureBuilder(
               future: fetchCategories(),
               builder: ((context, snapshot) => snapshot.hasData
                   ? Categories(
@@ -31,9 +30,15 @@ class Body extends StatelessWidget {
                     )
                   : Center(
                       child: Image.asset("assets/ripple.gif"),
-                    )))
-        ],
-      ),
+                    ))),
+        ),
+        Divider(height: defaultSize),
+        Padding(
+          padding: EdgeInsets.all(defaultSize * 2),
+          child: TitleText(title: "Recommanded for you"),
+        ),
+        ProductCard(product: product, press: () {}),
+      ],
     );
   }
 }
